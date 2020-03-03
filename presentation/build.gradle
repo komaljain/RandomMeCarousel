@@ -1,36 +1,39 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
 android {
-    ext
     compileSdkVersion rootProject.ext.compileSdkVersion
+
+
     defaultConfig {
-        applicationId "com.people.random.me.carousel"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion rootProject.ext.compileSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     def rootDependencies = rootProject.ext
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation rootDependencies.androidXDependencies.appCompat
     implementation rootDependencies.androidXDependencies.core
     testImplementation rootDependencies.testDependencies.jUnit
     androidTestImplementation rootDependencies.testDependencies.androidXTestExtJunit
     androidTestImplementation rootDependencies.testDependencies.androidXTestExpresso
 
-    implementation project(":presentation")
+
+    implementation project(":data")
 }
