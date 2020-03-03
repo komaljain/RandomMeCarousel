@@ -1,0 +1,23 @@
+ext {
+    compileSdkVersion = 28
+    minSdkVersion = 19
+    targetSdkVersion = 28
+    versionCode = 1
+    versionName = "1.0"
+    jUnitVersion = "4.12"
+    jUnitExtVersion = "1.1.0"
+    jUnitExpresso = "3.1.1"
+    androidXVersion = "1.0.2"
+
+    androidXDependencies = [
+        appCompat : "androidx.appcompat:appcompat:$androidXVersion",
+        core : "androidx.core:core-ktx:$androidXVersion"
+    ]
+
+    testDependencies = [
+
+        jUnit : "junit:junit:$jUnitVersion",
+        androidXTestExtJunit : "androidx.test.ext:junit:$jUnitExtVersion",
+        androidXTestExpresso : "androidx.test.espresso:espresso-core:$jUnitExpresso"
+    ]
+}
